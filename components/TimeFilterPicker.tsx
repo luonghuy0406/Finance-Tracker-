@@ -12,7 +12,7 @@ import { TimeFilter } from "@/types";
 import Colors from "@/constants/colors";
 import { X } from "lucide-react-native";
 import { useSettingsStore } from "@/store/settingsStore";
-import { useTranslation } from "../translations";
+import { useTranslation } from "@/translations";
 
 interface TimeFilterPickerProps {
   selectedFilter: TimeFilter;

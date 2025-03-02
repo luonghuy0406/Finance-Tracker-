@@ -3,17 +3,11 @@ import { Tabs } from "expo-router";
 import { Home, PlusCircle, PieChart, Settings } from "lucide-react-native";
 import Colors from "@/constants/colors";
 import { useSettingsStore } from "@/store/settingsStore";
-import { translations } from "../translations";
-
+import { useTranslation } from "@/translations";
 export default function TabLayout() {
   const { settings } = useSettingsStore();
+  const { t } = useTranslation(settings.language);
   
-  // Get translation function
-  const t = (key: string): string => {
-    const lang = settings.language in translations ? settings.language : 'en';
-    return translations[lang as keyof typeof translations][key as keyof typeof translations[typeof lang]] || translations.en[key as keyof typeof translations['en']] || key;
-  };
-
   return (
     <Tabs
       screenOptions={{
@@ -30,14 +24,14 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="dashboards"
         options={{
           title: t("dashboard"),
           tabBarIcon: ({ color, size }) => <Home size={size} color={color} />,
         }}
       />
       <Tabs.Screen
-        name="add-transaction"
+        name="index"
         options={{
           // title: t("addTransaction"),
           tabBarIcon: ({ color, size }) => <PlusCircle size={size} color={color} />,

@@ -1,3 +1,5 @@
+// utils/helpers.ts
+
 import { Platform } from "react-native";
 import { useSettingsStore } from "@/store/settingsStore";
 
@@ -47,19 +49,41 @@ export const getCurrentDate = (): string => {
 };
 
 // Calculate total income, expenses, and balance from transactions
-export const calculateFinancialSummary = (transactions: any[]) => {
-  return transactions.reduce(
-    (summary, transaction) => {
-      if (transaction.type === "income") {
-        summary.income += transaction.amount;
-      } else {
-        summary.expenses += transaction.amount;
-      }
-      summary.balance = summary.income - summary.expenses;
-      return summary;
-    },
-    { income: 0, expenses: 0, balance: 0 }
-  );
+export const calculateFinancialSummary = (transactions: any[], wallets: any[]) => {
+  const walletSummaries = wallets.reduce((acc: any, wallet: any) => {
+    acc[wallet.id] = {
+      spent: 0,
+      remaining: wallet.balance,
+      walletName: wallet.name,
+    };
+    return acc;
+  }, {});
+
+  let income = 0;
+  let expenses = 0;
+
+  transactions.forEach((transaction) => {
+    const walletId = transaction.walletId;
+    const amount = transaction.amount;
+
+    if (transaction.type === "income") {
+      income += amount;
+      walletSummaries[walletId].remaining += amount;
+    } else {
+      expenses += amount;
+      walletSummaries[walletId].spent += amount;
+      walletSummaries[walletId].remaining -= amount;
+    }
+  });
+
+  const balance = income - expenses;
+
+  return {
+    income,
+    expenses,
+    balance,
+    walletSummaries,
+  };
 };
 
 // Check if platform is web

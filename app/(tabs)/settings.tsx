@@ -23,7 +23,7 @@ import {
   LogOut,
   Tag,
 } from "lucide-react-native";
-import { useTranslation } from "../translations";
+import { useTranslation } from "@/translations";
 
 export default function SettingsScreen() {
   const router = useRouter();

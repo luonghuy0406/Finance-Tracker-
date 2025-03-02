@@ -79,7 +79,9 @@ export const translations = {
     helpSupport: "Help & Support",
     logOut: "Log Out",
     version: "Version",
-    
+    walletStatistics: "Wallet Statistics", // English
+    spent: "Spent", // English
+    remaining: "Remaining", // English
     // Time filters
     today: "Today",
     thisWeek: "This Week",
@@ -169,7 +171,9 @@ export const translations = {
     helpSupport: "Trợ giúp & Hỗ trợ",
     logOut: "Đăng xuất",
     version: "Phiên bản",
-    
+    walletStatistics: "Thống kê Ví", // Vietnamese
+    spent: "Đã chi", // Vietnamese
+    remaining: "Còn lại", // Vietnamese
     // Time filters
     today: "Hôm nay",
     thisWeek: "Tuần này",
