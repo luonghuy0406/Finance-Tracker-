@@ -16,17 +16,17 @@ const defaultWallets: Wallet[] = [
   {
     id: "cash",
     name: "Cash",
-    balance: 1000,
+    balance: 0,
     icon: "Wallet",
     color: "#00B894",
   },
-  {
-    id: "bank",
-    name: "Bank Account",
-    balance: 5000,
-    icon: "CreditCard",
-    color: "#6C5CE7",
-  },
+  // {
+  //   id: "bank",
+  //   name: "Bank Account",
+  //   balance: 5000,
+  //   icon: "CreditCard",
+  //   color: "#6C5CE7",
+  // },
 ];
 
 export const useWalletStore = create<WalletState>()(

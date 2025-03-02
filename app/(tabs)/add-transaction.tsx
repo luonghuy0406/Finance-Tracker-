@@ -13,18 +13,22 @@ import { Stack, useRouter } from "expo-router";
 import { useTransactionStore } from "@/store/transactionStore";
 import { useCategoryStore } from "@/store/categoryStore";
 import { useWalletStore } from "@/store/walletStore";
+import { useSettingsStore } from "@/store/settingsStore";
 import { getCurrentDate } from "@/utils/helpers";
 import CategoryPicker from "@/components/CategoryPicker";
 import WalletPicker from "@/components/WalletPicker";
 import Button from "@/components/Button";
 import Colors from "@/constants/colors";
-import { ArrowLeft, Calendar } from "lucide-react-native";
+import { Calendar } from "lucide-react-native";
+import { useTranslation } from "../translations";
 
 export default function AddTransactionScreen() {
   const router = useRouter();
   const { addTransaction } = useTransactionStore();
   const { categories } = useCategoryStore();
   const { wallets } = useWalletStore();
+  const { settings } = useSettingsStore();
+  const { t } = useTranslation(settings.language);
 
   const [type, setType] = useState<"income" | "expense">("expense");
   const [amount, setAmount] = useState("");
@@ -58,22 +62,21 @@ export default function AddTransactionScreen() {
       type,
     });
 
-    router.back();
+    // Reset form
+    setAmount("");
+    setDescription("");
+    setDate(getCurrentDate());
+    setSelectedCategory(categories.find((c) => c.type === type) || null);
+    
+    // Navigate to dashboard
+    router.push("/");
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <Stack.Screen
         options={{
-          title: "Add Transaction",
-          headerLeft: () => (
-            <TouchableOpacity
-              style={styles.backButton}
-              onPress={() => router.back()}
-            >
-              <ArrowLeft size={24} color={Colors.text} />
-            </TouchableOpacity>
-          ),
+          title: t("addTransaction"),
         }}
       />
 
@@ -96,7 +99,7 @@ export default function AddTransactionScreen() {
                 type === "expense" && styles.activeTypeButtonText,
               ]}
             >
-              Expense
+              {t("expense")}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -112,13 +115,13 @@ export default function AddTransactionScreen() {
                 type === "income" && styles.activeTypeButtonText,
               ]}
             >
-              Income
+              {t("income")}
             </Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.formGroup}>
-          <Text style={styles.label}>Amount</Text>
+          <Text style={styles.label}>{t("amount")}</Text>
           <TextInput
             style={styles.amountInput}
             placeholder="0.00"
@@ -130,10 +133,10 @@ export default function AddTransactionScreen() {
         </View>
 
         <View style={styles.formGroup}>
-          <Text style={styles.label}>Description</Text>
+          <Text style={styles.label}>{t("description")}</Text>
           <TextInput
             style={styles.input}
-            placeholder="What was this for?"
+            placeholder={t("description")}
             value={description}
             onChangeText={setDescription}
             placeholderTextColor={Colors.textSecondary}
@@ -141,7 +144,7 @@ export default function AddTransactionScreen() {
         </View>
 
         <View style={styles.formGroup}>
-          <Text style={styles.label}>Date</Text>
+          <Text style={styles.label}>{t("date")}</Text>
           <TouchableOpacity style={styles.dateInput}>
             <Text style={styles.dateText}>{date}</Text>
             <Calendar size={20} color={Colors.textSecondary} />
@@ -164,7 +167,7 @@ export default function AddTransactionScreen() {
         </View>
 
         <Button
-          title="Save Transaction"
+          title={t("save")}
           onPress={handleSubmit}
           style={styles.submitButton}
         />
@@ -177,9 +180,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.background,
-  },
-  backButton: {
-    marginLeft: 16,
   },
   scrollView: {
     flex: 1,

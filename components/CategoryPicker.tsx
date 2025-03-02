@@ -17,7 +17,7 @@ import { X, Plus, Check } from "lucide-react-native";
 import Button from "@/components/Button";
 import { generateId } from "@/utils/helpers";
 import * as Icons from "lucide-react-native";
-import { useTranslation } from "@/translations";
+import { useTranslation } from "../translations";
 
 interface CategoryPickerProps {
   selectedCategory: Category | null;

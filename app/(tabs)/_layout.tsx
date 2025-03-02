@@ -1,9 +1,9 @@
 import React from "react";
 import { Tabs } from "expo-router";
-import { Home, PlusCircle, Settings } from "lucide-react-native";
+import { Home, PlusCircle, PieChart, Settings } from "lucide-react-native";
 import Colors from "@/constants/colors";
 import { useSettingsStore } from "@/store/settingsStore";
-import { translations } from "@/translations";
+import { translations } from "../translations";
 
 export default function TabLayout() {
   const { settings } = useSettingsStore();
@@ -39,10 +39,17 @@ export default function TabLayout() {
       <Tabs.Screen
         name="add-transaction"
         options={{
-          title: t("addTransaction"),
+          // title: t("addTransaction"),
           tabBarIcon: ({ color, size }) => <PlusCircle size={size} color={color} />,
         }}
       />
+      {/* <Tabs.Screen
+        name="reports"
+        options={{
+          title: t("reports"),
+          tabBarIcon: ({ color, size }) => <PieChart size={size} color={color} />,
+        }}
+      /> */}
       <Tabs.Screen
         name="settings"
         options={{

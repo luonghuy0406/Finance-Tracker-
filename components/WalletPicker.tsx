@@ -14,7 +14,7 @@ import { useSettingsStore } from "@/store/settingsStore";
 import Colors from "@/constants/colors";
 import { X } from "lucide-react-native";
 import * as Icons from "lucide-react-native";
-import { useTranslation } from "@/translations";
+import { useTranslation } from "../translations";
 
 interface WalletPickerProps {
   selectedWallet: Wallet | null;
