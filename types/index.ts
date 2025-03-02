@@ -3,7 +3,7 @@ export type TransactionType = 'income' | 'expense';
 export interface Transaction {
   id: string;
   amount: number;
-  description: string;
+  description?: string;
   date: string;
   categoryId: string;
   walletId: string;

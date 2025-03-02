@@ -155,7 +155,7 @@ export const useTransactionStore = create<TransactionState>()(
           }
           
           // Filter by search query
-          if (filters.searchQuery) {
+          if (filters.searchQuery && transaction.description) {
             const query = filters.searchQuery.toLowerCase();
             return transaction.description.toLowerCase().includes(query);
           }

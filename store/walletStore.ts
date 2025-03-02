@@ -10,6 +10,7 @@ interface WalletState {
   updateWallet: (id: string, updates: Partial<Wallet>) => void;
   deleteWallet: (id: string) => void;
   updateBalance: (id: string, amount: number) => void;
+  canDeleteWallet: (id: string) => boolean; // New method
 }
 
 const defaultWallets: Wallet[] = [
@@ -20,18 +21,11 @@ const defaultWallets: Wallet[] = [
     icon: "Wallet",
     color: "#00B894",
   },
-  // {
-  //   id: "bank",
-  //   name: "Bank Account",
-  //   balance: 5000,
-  //   icon: "CreditCard",
-  //   color: "#6C5CE7",
-  // },
 ];
 
 export const useWalletStore = create<WalletState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       wallets: defaultWallets,
       
       addWallet: (wallet) => 
@@ -46,10 +40,16 @@ export const useWalletStore = create<WalletState>()(
           ),
         })),
       
-      deleteWallet: (id) =>
+      deleteWallet: (id) => {
+        if (!get().canDeleteWallet(id)) {
+          // You might want to dispatch an event or use a callback to notify the UI
+          console.warn("Cannot delete the last wallet.");
+          return;
+        }
         set((state) => ({
           wallets: state.wallets.filter((wallet) => wallet.id !== id),
-        })),
+        }));
+      },
       
       updateBalance: (id, amount) =>
         set((state) => ({
@@ -59,6 +59,10 @@ export const useWalletStore = create<WalletState>()(
               : wallet
           ),
         })),
+
+      canDeleteWallet: (id: string) => {
+        return get().wallets.length > 1;
+      },
     }),
     {
       name: "wallet-storage",

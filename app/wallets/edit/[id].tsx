@@ -43,7 +43,7 @@ const walletColors = [
 export default function EditWalletScreen() {
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { wallets, updateWallet, deleteWallet } = useWalletStore();
+  const { wallets, updateWallet, deleteWallet, canDeleteWallet } = useWalletStore();
   const { getFilteredTransactions } = useTransactionStore();
   const { settings } = useSettingsStore();
   const { t } = useTranslation(settings.language);
@@ -91,6 +91,15 @@ export default function EditWalletScreen() {
       Alert.alert(
         t("delete"),
         "This wallet has transactions. Please delete or move all transactions before deleting the wallet.",
+        [{ text: "OK" }]
+      );
+      return;
+    }
+
+    if (!canDeleteWallet(wallet.id)) {
+      Alert.alert(
+        t("delete"),
+        "You must have at least one wallet.",
         [{ text: "OK" }]
       );
       return;

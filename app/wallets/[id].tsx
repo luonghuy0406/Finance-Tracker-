@@ -24,7 +24,7 @@ import { useTranslation } from "@/translations";
 export default function WalletDetailsScreen() {
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { wallets, deleteWallet } = useWalletStore();
+  const { wallets, deleteWallet, canDeleteWallet } = useWalletStore();
   const { transactions, getFilteredTransactions } = useTransactionStore();
   const { settings } = useSettingsStore();
   const { t } = useTranslation(settings.language);
@@ -71,6 +71,15 @@ export default function WalletDetailsScreen() {
       Alert.alert(
         t("delete"),
         "This wallet has transactions. Please delete or move all transactions before deleting the wallet.",
+        [{ text: "OK" }]
+      );
+      return;
+    }
+
+    if (!canDeleteWallet(wallet.id)) {
+      Alert.alert(
+        t("delete"),
+        "You must have at least one wallet.",
         [{ text: "OK" }]
       );
       return;

@@ -44,14 +44,13 @@ export default function AddTransactionScreen() {
   };
 
   const handleSubmit = () => {
-    if (!amount || !description || !selectedCategory || !selectedWallet) {
+    if (!amount || !selectedCategory || !selectedWallet) {
       // Show validation error
       return;
     }
-
     addTransaction({
       amount: parseFloat(amount),
-      description,
+      description: description || "",
       date,
       categoryId: selectedCategory.id,
       walletId: selectedWallet.id,

@@ -51,7 +51,7 @@ export default function EditTransactionScreen() {
     
     setType(transaction.type);
     setAmount(transaction.amount.toString());
-    setDescription(transaction.description);
+    setDescription(transaction.description || "");
     setDate(transaction.date);
     setSelectedCategory(categories.find((c) => c.id === transaction.categoryId) || null);
     setSelectedWallet(wallets.find((w) => w.id === transaction.walletId) || null);
@@ -68,7 +68,7 @@ export default function EditTransactionScreen() {
   };
 
   const handleSubmit = () => {
-    if (!amount || !description || !selectedCategory || !selectedWallet) {
+    if (!amount || !selectedCategory || !selectedWallet) {
       // Show validation error
       return;
     }

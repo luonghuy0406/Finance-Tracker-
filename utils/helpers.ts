@@ -65,11 +65,10 @@ export const calculateFinancialSummary = (transactions: any[], wallets: any[]) =
   transactions.forEach((transaction) => {
     const walletId = transaction.walletId;
     const amount = transaction.amount;
-
     if (transaction.type === "income") {
       income += amount;
       walletSummaries[walletId].remaining += amount;
-    } else {
+    } else if(walletSummaries[walletId]){
       expenses += amount;
       walletSummaries[walletId].spent += amount;
       walletSummaries[walletId].remaining -= amount;
