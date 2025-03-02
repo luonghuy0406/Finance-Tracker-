@@ -71,7 +71,7 @@ export default function DashboardScreen() {
           headerRight: () => (
             <TouchableOpacity
               style={styles.addButton}
-              onPress={() => router.push("/wallets/add")}
+              onPress={() => router.push("/transactions/add")}
             >
               <Plus size={24} color={Colors.primary} />
             </TouchableOpacity>

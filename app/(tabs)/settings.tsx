@@ -163,7 +163,7 @@ export default function SettingsScreen() {
         <View style={styles.appInfo}>
           <Text style={styles.appVersion}>{t("version")} 1.0.0</Text>
           <Text style={styles.appCopyright}>
-            © 2023 Personal Finance Tracker
+            © 2025 Personal Finance Tracker
           </Text>
         </View>
       </ScrollView>
