@@ -368,7 +368,7 @@ export default function DashboardScreen() {
                 </View>
 
                 {/* Wallet Summaries */}
-                <View style={styles.walletSummariesContainer}>
+                {/* <View style={styles.walletSummariesContainer}>
                   <Text style={styles.sectionTitle}>{t("walletStatistics")}</Text>
                   {Object.entries(walletSummaries).map(([walletId, summary]: [string, any]) => (
                     <View key={walletId} style={styles.walletSummaryItem}>
@@ -377,7 +377,7 @@ export default function DashboardScreen() {
                       <Text style={styles.remainingAmount}>{t("remaining")}: {formatCurrency(summary.remaining)}</Text>
                     </View>
                   ))}
-                </View>
+                </View> */}
               </>
             )}
           </>

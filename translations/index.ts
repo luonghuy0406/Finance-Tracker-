@@ -90,6 +90,7 @@ export const translations = {
     thisYear: "This Year",
     custom: "Custom",
     selectTimePeriod: "Select Time Period",
+    frequentCategories: "Frequent Categories",
   },
   vi: {
     // Common
@@ -182,6 +183,7 @@ export const translations = {
     thisYear: "Năm nay",
     custom: "Tùy chỉnh",
     selectTimePeriod: "Chọn khoảng thời gian",
+    frequentCategories: "Danh mục thường dùng",
   }
 };
 

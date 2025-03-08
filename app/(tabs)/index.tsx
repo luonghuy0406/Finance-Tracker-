@@ -21,6 +21,7 @@ import Button from "@/components/Button";
 import Colors from "@/constants/colors";
 import { Calendar } from "lucide-react-native";
 import { useTranslation } from "@/translations";
+import FrequentCategorySuggestions from "@/components/FrequentCategorySuggestions";
 
 export default function AddTransactionScreen() {
   const router = useRouter();
@@ -150,7 +151,13 @@ export default function AddTransactionScreen() {
             <Calendar size={20} color={Colors.textSecondary} />
           </TouchableOpacity>
         </View>
-
+        <View style={styles.formGroup}>
+          <FrequentCategorySuggestions
+            categories={categories}
+            onSelectCategory={setSelectedCategory}
+            transactionType={type}
+          />
+        </View>
         <View style={styles.formGroup}>
           <CategoryPicker
             selectedCategory={selectedCategory}
@@ -217,7 +224,10 @@ const styles = StyleSheet.create({
     color: Colors.text,
   },
   formGroup: {
-    marginBottom: 16,
+    marginBottom: 16,  
+  },
+    formGroupSuggestions: {
+    marginBottom: 24,
   },
   label: {
     fontSize: 14,

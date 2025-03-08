@@ -24,6 +24,7 @@ export interface Category {
   type: TransactionType;
   icon: string;
   color: string;
+  isFrequent: boolean,
 }
 
 export interface Currency {

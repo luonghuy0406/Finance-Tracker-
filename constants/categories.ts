@@ -8,6 +8,7 @@ export const defaultCategories: Category[] = [
     type: "income",
     icon: "Briefcase",
     color: "#00B894",
+    isFrequent: true,
   },
   {
     id: "income-freelance",
@@ -15,6 +16,7 @@ export const defaultCategories: Category[] = [
     type: "income",
     icon: "Laptop",
     color: "#55EFC4",
+    isFrequent: true,
   },
   {
     id: "income-investments",
@@ -22,6 +24,7 @@ export const defaultCategories: Category[] = [
     type: "income",
     icon: "TrendingUp",
     color: "#00CEC9",
+    isFrequent: false,
   },
   {
     id: "income-gifts",
@@ -29,6 +32,7 @@ export const defaultCategories: Category[] = [
     type: "income",
     icon: "Gift",
     color: "#74B9FF",
+    isFrequent: false,
   },
   {
     id: "income-other",
@@ -36,6 +40,7 @@ export const defaultCategories: Category[] = [
     type: "income",
     icon: "Plus",
     color: "#6C5CE7",
+    isFrequent: false,
   },
 
   // Expense categories
@@ -45,6 +50,7 @@ export const defaultCategories: Category[] = [
     type: "expense",
     icon: "Utensils",
     color: "#FF7675",
+    isFrequent: true,
   },
   {
     id: "expense-shopping",
@@ -52,6 +58,7 @@ export const defaultCategories: Category[] = [
     type: "expense",
     icon: "ShoppingBag",
     color: "#FD79A8",
+    isFrequent: true,
   },
   {
     id: "expense-transportation",
@@ -59,6 +66,7 @@ export const defaultCategories: Category[] = [
     type: "expense",
     icon: "Car",
     color: "#FDCB6E",
+    isFrequent: true,
   },
   {
     id: "expense-utilities",
@@ -66,6 +74,7 @@ export const defaultCategories: Category[] = [
     type: "expense",
     icon: "Zap",
     color: "#E17055",
+    isFrequent: true,
   },
   {
     id: "expense-housing",
@@ -73,6 +82,7 @@ export const defaultCategories: Category[] = [
     type: "expense",
     icon: "Home",
     color: "#D63031",
+    isFrequent: false,
   },
   {
     id: "expense-entertainment",
@@ -80,6 +90,7 @@ export const defaultCategories: Category[] = [
     type: "expense",
     icon: "Film",
     color: "#E84393",
+    isFrequent: false,
   },
   {
     id: "expense-health",
@@ -87,6 +98,7 @@ export const defaultCategories: Category[] = [
     type: "expense",
     icon: "Activity",
     color: "#FF9FF3",
+    isFrequent: false,
   },
   {
     id: "expense-education",
@@ -94,6 +106,7 @@ export const defaultCategories: Category[] = [
     type: "expense",
     icon: "Book",
     color: "#F368E0",
+    isFrequent: false,
   },
   {
     id: "expense-other",
@@ -101,5 +114,6 @@ export const defaultCategories: Category[] = [
     type: "expense",
     icon: "MoreHorizontal",
     color: "#636E72",
+    isFrequent: false,
   },
 ];
